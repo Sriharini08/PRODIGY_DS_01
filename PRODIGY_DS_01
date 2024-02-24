@@ -1,0 +1,16 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+url = "https://data.worldbank.org/indicator/SP.POP.TOTL"
+data = pd.read_csv(url, skiprows=4)
+countries = data["Country Name"]
+population = data["2020"] 
+sorted_indices = population.argsort()
+countries = countries[sorted_indices]
+population = population[sorted_indices]
+plt.figure(figsize=(10, 6))
+plt.barh(countries, population, color='skyblue')
+plt.xlabel('Population')
+plt.ylabel('Countries')
+plt.title('Population Distribution by Country (2020)')
+plt.tight_layout()
+plt.show()
